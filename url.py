@@ -17,7 +17,6 @@ def Analysis(url):
         x = IP._all_fields['ip.len']
         length[x] += 1
         print(length[x])
-    os.system('echo ''> test1.pcap')
     print (length)
     return length
     
@@ -31,7 +30,7 @@ for i in url_list:
     os.system('wget' + ' ' +i)
     time.sleep(10)
     dic[i] = Analysis(i)
-    
+    os.system('echo > test1.pcap')
     
 with open('data.txt', 'w') as outfile:
     json.dump(dic, outfile)
