@@ -3,23 +3,35 @@ import os
 import time
 import pyshark
 import json
+from collections import defaultdict
 def Analysis(url):
     cap = pyshark.FileCapture('test1.pcap')
     dic = {}
     length = {}
-    packet1 = cap[0]
-    IP = packet1['ip']
-    length['len'] = IP._all_fields['ip.len']
+    length=defaultdict(lambda:1,length)
+    print (len(cap))
+    for i in cap:
+        #print (i['ip']._all_fields['ip.len'])
+        packet = i
+        IP = packet['ip']
+        x = IP._all_fields['ip.len']
+        length[x] += 1
+        print(length[x])
+    os.system('echo ''> test1.pcap')
+    print (length)
     return length
     
     
-url_list = ['https://www.stackoverflow.com/questions/4760215/running-shell-command-from-python-and-capturing-the-output','https://www.stackoverflow.com/questions/17824096/bufsize-must-be-an-integer-error-while-grepping-a-message','https://www.stackoverflow.com/questions/3797958/how-to-write-script-output-to-file-and-command-line']
+url_list = ['https://stackoverflow.com/questions/7571635/fastest-way-to-check-if-a-value-exist-in-a-list','https://stackoverflow.com/questions/176918/finding-the-index-of-an-item-given-a-list-containing-it-in-python','https://stackoverflow.com/questions/10575750/python-ioerror-errno-13-permission-denied']
 dic = {}
+fh = open("test1.pcap",'r')
+fh.close()
+os.system('sudo chmod 777 test1.pcap')
 for i in url_list:
     os.system('wget' + ' ' +i)
     time.sleep(10)
     dic[i] = Analysis(i)
-    os.system('echo > test1.pcap')
+    
     
 with open('data.txt', 'w') as outfile:
     json.dump(dic, outfile)
