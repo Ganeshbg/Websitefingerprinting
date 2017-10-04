@@ -9,3 +9,7 @@ packet and get the length of each packet. We then create a dictionary of key val
 of length of packet. This dictionary is a value for another dictionary whose keys are the URL.
 
 Example: {'www.stackoverflow.com/a/b':{'65':120,'76:78,'34':332}}
+
+When a new request is made we compare the frequency of packet lengths for that request and try to map it with the frequencies that we have already saved.
+
+This implementation is based out of the paper http://www.cs.jhu.edu/~sdoshi/jhuisi650/papers/spimacs/SPIMACS_CD/ccsw/p31.pdf
