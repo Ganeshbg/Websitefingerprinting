@@ -14,4 +14,4 @@ When a new request is made we compare the frequency of packet lengths for that r
 
 This implementation is based out of the paper http://www.cs.jhu.edu/~sdoshi/jhuisi650/papers/spimacs/SPIMACS_CD/ccsw/p31.pdf
 
-Take a look at the "sub" branch for current updates code. The project is still in progress.
+Project is still in progress.
